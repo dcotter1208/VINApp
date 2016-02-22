@@ -15,7 +15,10 @@
 @property(nonatomic, strong) NSString *year;
 @property(nonatomic, strong) NSString *baseMSRP;
 
+
 -(id)initWithMake:(NSString *)make;
 +(id)initWithMake:(NSString *)make;
+
+
 
 @end

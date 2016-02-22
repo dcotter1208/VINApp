@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import "Vehicle.h"
+#import "Alert.h"
+
 
 @interface ViewController ()
 
@@ -25,7 +27,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
 
+    
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -43,15 +47,13 @@
     [self clearLabels];
     
     if ([self.VINTextField.text isEqual: @""]) {
-        NSLog(@"text field is empty");
+        [Alert initWithAlert:@"Please input a VIN" actionTitle:@"Ok" viewController:self];
     } else {
     
     NSString *edmundsAPIKey = @"5xgdf7jpeu9wkgnq6f5rave4";
     NSString *VINNumber = [self.VINTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSString *urlString = [NSString stringWithFormat:@"https://api.edmunds.com/api/vehicle/v2/vins/%@?fmt=json&api_key=%@", VINNumber, edmundsAPIKey];
-        
-        NSLog(@"URL: %@", urlString);
-    
+
     NSURL *url = [NSURL URLWithString:urlString];
     
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -75,20 +77,25 @@
                     NSArray *yearsDict = [vehicleJSON valueForKeyPath:@"years"];
                     vehicle.year = yearsDict[0][@"year"];
                     vehicle.baseMSRP = [vehicleJSON valueForKeyPath:@"price.baseMSRP"];
-                    
-                    NSLog(@"Year: %@, Make: %@, Model: %@, Base MSRP: %@", vehicle.year, vehicle.make, vehicle.model, vehicle.baseMSRP);
-                    
+
                     dispatch_async(dispatch_get_main_queue(), ^{
                         self.makeLabel.text = [NSString stringWithFormat:@"%@", vehicle.make];
                         self.modelLabel.text = [NSString stringWithFormat:@"%@", vehicle.model];
                         self.yearLabel.text = [NSString stringWithFormat:@"%@", vehicle.year];
                         self.baseMSRPLabel.text = [NSString stringWithFormat:@"$%@", vehicle.baseMSRP];
+                        
+                        if ([self.makeLabel.text isEqualToString:@"Ford"]) {
+                            [Alert initWithAlert:@"Think Ford First!" actionTitle:@"Ok" viewController:self];
+                        } else {
+                            [Alert initWithAlert:@"Not a Ford" actionTitle:@"Ok" viewController:self];
+                        }
+                        
                     });
                 } else {
-                    NSLog(@"%@", jsonError);
+                    [Alert initWithAlert:@"Could not return vehicle info. Please try again." actionTitle:@"Ok" viewController:self];
                 }
             } else if (urlResponse.statusCode == 400) {
-                NSLog(@"Invalid VIN. Please try again");
+                [Alert initWithAlert:@"Invalid VIN. Please try again." actionTitle:@"Ok" viewController:self];
             };
         }
     }];
