@@ -39,11 +39,10 @@
 }
 
 - (IBAction)submitVINButton:(id)sender {
-
+    [self clearLabels];
     NSString *edmundsAPIKey = @"5xgdf7jpeu9wkgnq6f5rave4";
     NSString *VINNumber = self.VINTextField.text;
     NSString *urlString = [NSString stringWithFormat:@"https://api.edmunds.com/api/vehicle/v2/vins/%@?fmt=json&api_key=%@", VINNumber, edmundsAPIKey];
-    NSLog(@"FINAL URL: %@", urlString);
     
     NSURL *url = [NSURL URLWithString:urlString];
     
@@ -61,38 +60,40 @@
                 
                 NSDictionary *vehicleJSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
                 
-//                NSMutableArray *vehicleInfo = [[NSMutableArray alloc]init];
-                
                 if (!jsonError) {
-//                    NSString *vehicleMake = [vehicleJSON valueForKeyPath:@"make.name"];
                     
                     Vehicle *vehicle = [Vehicle initWithMake:[vehicleJSON valueForKeyPath:@"make.name"]];
                     vehicle.model = [vehicleJSON valueForKeyPath:@"model.name"];
                     NSArray *yearsDict = [vehicleJSON valueForKeyPath:@"years"];
                     vehicle.year = yearsDict[0][@"year"];
                     vehicle.baseMSRP = [vehicleJSON valueForKeyPath:@"price.baseMSRP"];
-//                    NSLog(@"YEAR: %@", vehicle.year);
-                    
                     
                     NSLog(@"Year: %@, Make: %@, Model: %@, Base MSRP: %@", vehicle.year, vehicle.make, vehicle.model, vehicle.baseMSRP);
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        self.makeLabel.text = vehicle.make;
-                        self.modelLabel.text = vehicle.model;
+                        self.makeLabel.text = [NSString stringWithFormat:@"%@", vehicle.make];
+                        self.modelLabel.text = [NSString stringWithFormat:@"%@", vehicle.model];
                         self.yearLabel.text = [NSString stringWithFormat:@"%@", vehicle.year];
                         self.baseMSRPLabel.text = [NSString stringWithFormat:@"%@", vehicle.baseMSRP];
-//                        vehicle.baseMSRP;
-//
                     });
-                    
-//                    NSLog(@"%@", vehicleJSON);
+                } else {
+                    NSLog(@"%@", jsonError);
                 }
-                
             };
+        } else {
+            NSLog(@"%@", error);
         }
     }];
     
     [dataTask resume];
+    
+}
+
+-(void)clearLabels {
+    self.makeLabel.text = @"";
+    self.modelLabel.text = @"";
+    self.yearLabel.text = @"";
+    self.baseMSRPLabel.text = @"";
     
 }
 
