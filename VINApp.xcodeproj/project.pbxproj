@@ -17,6 +17,7 @@
 		C036E1181C7A537F00BC37F4 /* VINAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C036E1171C7A537F00BC37F4 /* VINAppUITests.m */; };
 		C036E1271C7A5F2300BC37F4 /* Vehicle.m in Sources */ = {isa = PBXBuildFile; fileRef = C036E1261C7A5F2300BC37F4 /* Vehicle.m */; };
 		C036E12B1C7B684300BC37F4 /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = C036E12A1C7B684300BC37F4 /* Alert.m */; };
+		C036E12E1C7B98B900BC37F4 /* PreviousVINTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C036E12D1C7B98B900BC37F4 /* PreviousVINTVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,8 @@
 		C036E1261C7A5F2300BC37F4 /* Vehicle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vehicle.m; sourceTree = "<group>"; };
 		C036E1291C7B684200BC37F4 /* Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alert.h; sourceTree = "<group>"; };
 		C036E12A1C7B684300BC37F4 /* Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alert.m; sourceTree = "<group>"; };
+		C036E12C1C7B98B900BC37F4 /* PreviousVINTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviousVINTVC.h; sourceTree = "<group>"; };
+		C036E12D1C7B98B900BC37F4 /* PreviousVINTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousVINTVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +114,8 @@
 				C036E0F61C7A537F00BC37F4 /* AppDelegate.m */,
 				C036E0F81C7A537F00BC37F4 /* ViewController.h */,
 				C036E0F91C7A537F00BC37F4 /* ViewController.m */,
+				C036E12C1C7B98B900BC37F4 /* PreviousVINTVC.h */,
+				C036E12D1C7B98B900BC37F4 /* PreviousVINTVC.m */,
 				C036E0FB1C7A537F00BC37F4 /* Main.storyboard */,
 				C036E0FE1C7A537F00BC37F4 /* Assets.xcassets */,
 				C036E1001C7A537F00BC37F4 /* LaunchScreen.storyboard */,
@@ -292,6 +297,7 @@
 				C036E12B1C7B684300BC37F4 /* Alert.m in Sources */,
 				C036E0FA1C7A537F00BC37F4 /* ViewController.m in Sources */,
 				C036E0F71C7A537F00BC37F4 /* AppDelegate.m in Sources */,
+				C036E12E1C7B98B900BC37F4 /* PreviousVINTVC.m in Sources */,
 				C036E0F41C7A537F00BC37F4 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -18,6 +18,8 @@
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil
                                                                        message:alertMessage
                                                                 preferredStyle:UIAlertControllerStyleAlert];
+        alertController.view.backgroundColor = [UIColor whiteColor];
+        alertController.view.layer.cornerRadius = 10.0;
         
         UIAlertAction* action = [UIAlertAction actionWithTitle:actionTitle style:UIAlertActionStyleCancel handler:nil];
         

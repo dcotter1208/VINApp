@@ -10,11 +10,7 @@
 
 @interface ViewController : UIViewController
 
-//@property(nonatomic, strong) UIAlertController *alertMessage;
-//@property (nonatomic, strong) UIAlertController *alert;
-//
-//-(id)initWithAlertMessage:(NSString *)alertMessageAndActionTitle;
-//+(id)initWithAlertMessage:(NSString *)alertMessageAndActionTitle;
+@property (nonatomic, strong) NSMutableArray *previousVINs;
 
 
 @end
