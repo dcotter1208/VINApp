@@ -33,13 +33,44 @@
 }
 
 - (IBAction)submitVINButton:(id)sender {
+
+    NSString *edmundsAPIKey = @"5xgdf7jpeu9wkgnq6f5rave4";
+    NSString *VINNumber = self.VINTextField.text;
+    NSString *urlString = [NSString stringWithFormat:@"https://api.edmunds.com/api/vehicle/v2/vins/%@?fmt=json&api_key=%@", VINNumber, edmundsAPIKey];
+    NSLog(@"FINAL URL: %@", urlString);
     
+    NSURL *url = [NSURL URLWithString:urlString];
     
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
+    
+    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if (!error) {
+            NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse*) response;
+            
+            if (urlResponse.statusCode == 200) {
+                
+                NSError *jsonError;
+                
+                NSDictionary *vehicleJSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
+                
+                NSMutableArray *vehicleInfo = [[NSMutableArray alloc]init];
+                
+                if (!jsonError) {
+                    NSLog(@"%@", vehicleJSON);
+                }
+                
+            };
+        }
+    }];
+    
+    [dataTask resume];
     
 }
 
 
-
+//    @"https://api.edmunds.com/api/vehicle/v2/vins/1C3CCCBB8FN710820?fmt=json&api_key=5xgdf7jpeu9wkgnq6f5rave4";
 
 
 @end

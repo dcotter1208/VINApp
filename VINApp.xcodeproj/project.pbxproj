@@ -15,6 +15,7 @@
 		C036E1021C7A537F00BC37F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C036E1001C7A537F00BC37F4 /* LaunchScreen.storyboard */; };
 		C036E10D1C7A537F00BC37F4 /* VINAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C036E10C1C7A537F00BC37F4 /* VINAppTests.m */; };
 		C036E1181C7A537F00BC37F4 /* VINAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C036E1171C7A537F00BC37F4 /* VINAppUITests.m */; };
+		C036E1271C7A5F2300BC37F4 /* VehicleInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C036E1261C7A5F2300BC37F4 /* VehicleInfo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		C036E1131C7A537F00BC37F4 /* VINAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VINAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C036E1171C7A537F00BC37F4 /* VINAppUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VINAppUITests.m; sourceTree = "<group>"; };
 		C036E1191C7A537F00BC37F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C036E1251C7A5F2300BC37F4 /* VehicleInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VehicleInfo.h; sourceTree = "<group>"; };
+		C036E1261C7A5F2300BC37F4 /* VehicleInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VehicleInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +112,7 @@
 				C036E0FE1C7A537F00BC37F4 /* Assets.xcassets */,
 				C036E1001C7A537F00BC37F4 /* LaunchScreen.storyboard */,
 				C036E1031C7A537F00BC37F4 /* Info.plist */,
+				C036E1281C7A5F2900BC37F4 /* Model */,
 				C036E0F21C7A537F00BC37F4 /* Supporting Files */,
 			);
 			path = VINApp;
@@ -138,6 +142,15 @@
 				C036E1191C7A537F00BC37F4 /* Info.plist */,
 			);
 			path = VINAppUITests;
+			sourceTree = "<group>";
+		};
+		C036E1281C7A5F2900BC37F4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C036E1251C7A5F2300BC37F4 /* VehicleInfo.h */,
+				C036E1261C7A5F2300BC37F4 /* VehicleInfo.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,6 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C036E1271C7A5F2300BC37F4 /* VehicleInfo.m in Sources */,
 				C036E0FA1C7A537F00BC37F4 /* ViewController.m in Sources */,
 				C036E0F71C7A537F00BC37F4 /* AppDelegate.m in Sources */,
 				C036E0F41C7A537F00BC37F4 /* main.m in Sources */,
