@@ -7,11 +7,17 @@
 //
 
 #import "ViewController.h"
+#import "Vehicle.h"
 
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *VINSubmitButton;
 @property (weak, nonatomic) IBOutlet UITextField *VINTextField;
+@property (weak, nonatomic) IBOutlet UILabel *makeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *modelLabel;
+@property (weak, nonatomic) IBOutlet UILabel *yearLabel;
+@property (weak, nonatomic) IBOutlet UILabel *baseMSRPLabel;
+
 
 @end
 
@@ -55,10 +61,31 @@
                 
                 NSDictionary *vehicleJSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
                 
-                NSMutableArray *vehicleInfo = [[NSMutableArray alloc]init];
+//                NSMutableArray *vehicleInfo = [[NSMutableArray alloc]init];
                 
                 if (!jsonError) {
-                    NSLog(@"%@", vehicleJSON);
+//                    NSString *vehicleMake = [vehicleJSON valueForKeyPath:@"make.name"];
+                    
+                    Vehicle *vehicle = [Vehicle initWithMake:[vehicleJSON valueForKeyPath:@"make.name"]];
+                    vehicle.model = [vehicleJSON valueForKeyPath:@"model.name"];
+                    NSArray *yearsDict = [vehicleJSON valueForKeyPath:@"years"];
+                    vehicle.year = yearsDict[0][@"year"];
+                    vehicle.baseMSRP = [vehicleJSON valueForKeyPath:@"price.baseMSRP"];
+//                    NSLog(@"YEAR: %@", vehicle.year);
+                    
+                    
+                    NSLog(@"Year: %@, Make: %@, Model: %@, Base MSRP: %@", vehicle.year, vehicle.make, vehicle.model, vehicle.baseMSRP);
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        self.makeLabel.text = vehicle.make;
+                        self.modelLabel.text = vehicle.model;
+                        self.yearLabel.text = [NSString stringWithFormat:@"%@", vehicle.year];
+                        self.baseMSRPLabel.text = [NSString stringWithFormat:@"%@", vehicle.baseMSRP];
+//                        vehicle.baseMSRP;
+//
+                    });
+                    
+//                    NSLog(@"%@", vehicleJSON);
                 }
                 
             };
@@ -72,5 +99,7 @@
 
 //    @"https://api.edmunds.com/api/vehicle/v2/vins/1C3CCCBB8FN710820?fmt=json&api_key=5xgdf7jpeu9wkgnq6f5rave4";
 
+
+//1C3CCCBB8FN710820
 
 @end

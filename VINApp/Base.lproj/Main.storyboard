@@ -108,6 +108,10 @@
                     <connections>
                         <outlet property="VINSubmitButton" destination="U1Y-Bk-13F" id="lZe-pH-R8w"/>
                         <outlet property="VINTextField" destination="jaR-2K-lhB" id="NQO-E6-Qs1"/>
+                        <outlet property="baseMSRPLabel" destination="kOo-ve-z8K" id="TIe-dg-TSU"/>
+                        <outlet property="makeLabel" destination="cac-g2-e87" id="xeP-zu-9Ge"/>
+                        <outlet property="modelLabel" destination="QwE-fK-W6N" id="Oah-bH-nIm"/>
+                        <outlet property="yearLabel" destination="RH0-Wv-WVx" id="M1N-uL-7oH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
