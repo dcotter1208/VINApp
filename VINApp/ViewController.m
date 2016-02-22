@@ -40,9 +40,16 @@
 
 - (IBAction)submitVINButton:(id)sender {
     [self clearLabels];
+    
+    if ([self.VINTextField.text isEqual: @""]) {
+        NSLog(@"text field is empty");
+    } else {
+    
     NSString *edmundsAPIKey = @"5xgdf7jpeu9wkgnq6f5rave4";
-    NSString *VINNumber = self.VINTextField.text;
+    NSString *VINNumber = [self.VINTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSString *urlString = [NSString stringWithFormat:@"https://api.edmunds.com/api/vehicle/v2/vins/%@?fmt=json&api_key=%@", VINNumber, edmundsAPIKey];
+        
+        NSLog(@"URL: %@", urlString);
     
     NSURL *url = [NSURL URLWithString:urlString];
     
@@ -79,14 +86,15 @@
                 } else {
                     NSLog(@"%@", jsonError);
                 }
+            } else if (urlResponse.statusCode == 400) {
+                NSLog(@"Invalid VIN. Please try again");
             };
-        } else {
-            NSLog(@"%@", error);
         }
     }];
     
     [dataTask resume];
-    
+        
+    }
 }
 
 -(void)clearLabels {
