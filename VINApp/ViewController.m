@@ -25,6 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -81,7 +82,7 @@
                         self.makeLabel.text = [NSString stringWithFormat:@"%@", vehicle.make];
                         self.modelLabel.text = [NSString stringWithFormat:@"%@", vehicle.model];
                         self.yearLabel.text = [NSString stringWithFormat:@"%@", vehicle.year];
-                        self.baseMSRPLabel.text = [NSString stringWithFormat:@"%@", vehicle.baseMSRP];
+                        self.baseMSRPLabel.text = [NSString stringWithFormat:@"$%@", vehicle.baseMSRP];
                     });
                 } else {
                     NSLog(@"%@", jsonError);
@@ -105,10 +106,9 @@
     
 }
 
-
-//    @"https://api.edmunds.com/api/vehicle/v2/vins/1C3CCCBB8FN710820?fmt=json&api_key=5xgdf7jpeu9wkgnq6f5rave4";
-
-
-//1C3CCCBB8FN710820
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:true];
+    [super touchesBegan:touches withEvent:event];
+}
 
 @end
