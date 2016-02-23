@@ -7,8 +7,9 @@
 //
 
 #import "PreviousVINTVC.h"
+#import "Vehicle.h"
 
-@interface PreviousVINTVC ()
+@interface PreviousVINTVC () <UITableViewDataSource, UITableViewDelegate>
 
 @end
 
@@ -16,8 +17,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    _previousVINsArray = [NSMutableArray array];
+    
+//    [self.delegate self];
+    
+    NSLog(@"VIN STRING: %@", _VIN);
+    NSLog(@"Previous Vins Array Count: %lu", _previousVINsArray.count);
 
 }
 
@@ -26,19 +30,45 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)viewWillAppear:(BOOL)animated {
+    NSLog(@"Previous Vins Array Count: %lu", _previousVINsArray.count);
+
 }
-*/
+
 - (IBAction)dismissView:(id)sender {
     
     [self dismissViewControllerAnimated:true completion:nil];
     
 }
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return _previousVINsArray.count;
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    
+    Vehicle *vehicle = [_previousVINsArray objectAtIndex:indexPath.row];
+    
+    cell.textLabel.text = vehicle.VIN;
+    
+    return cell;
+    
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    NSString *selectedVIN = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+    
+    NSLog(@"SELECTED VIN: %@", selectedVIN);
+    
+    [self.delegate sendVINToVC:selectedVIN];
+    
+    [self dismissViewControllerAnimated:true completion:nil];
+    
+}
+
 
 @end

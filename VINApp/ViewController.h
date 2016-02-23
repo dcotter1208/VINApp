@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PreviousVINTVC.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <VINDelegate>
 
 @property (nonatomic, strong) NSMutableArray *previousVINs;
 

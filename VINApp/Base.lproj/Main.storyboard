@@ -211,6 +211,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="4ak-1A-B1c" id="5mv-IG-qVz"/>
+                                    <outlet property="delegate" destination="4ak-1A-B1c" id="vXr-VI-z2Z"/>
+                                </connections>
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xgm-sb-n8D">
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>

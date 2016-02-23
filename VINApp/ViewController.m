@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "Vehicle.h"
 #import "Alert.h"
+#import "PreviousVINTVC.h"
 
 
 @interface ViewController ()
@@ -95,6 +96,9 @@
                         }
                         
                     });
+                    
+                    
+                    
                 } else {
                     [Alert initWithAlert:@"Could not return vehicle info. Please try again." actionTitle:@"Ok" viewController:self];
                 }
@@ -135,7 +139,27 @@
         label.layer.borderWidth = 2.0;
         label.layer.borderColor = [UIColor blackColor].CGColor;
     }
+ 
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
+    PreviousVINTVC *destinationViewController = (PreviousVINTVC*)segue.destinationViewController;
     
+    if ([segue.identifier isEqualToString:@"showPreviousVINs"]) {
+        
+        destinationViewController.previousVINsArray = _previousVINs;
+        
+        [destinationViewController setDelegate:self];
+        
+    }
+    
+}
+
+-(void)sendVINToVC:(NSString *)VIN {
+    
+    NSLog(@"VIN Passed to First VC: %@", VIN);
+    [self.VINTextField setText:VIN];
     
 }
 

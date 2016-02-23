@@ -16,7 +16,6 @@
 @property(nonatomic, strong) NSString *baseMSRP;
 @property(nonatomic, strong) NSString *VIN;
 
-
 -(id)initWithMake:(NSString *)make;
 +(id)initWithMake:(NSString *)make;
 
