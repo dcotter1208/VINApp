@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "Vehicle.h"
 #import "Alert.h"
+#import "PreviousVINTVC.h"
 
 
 @interface ViewController ()
@@ -19,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *modelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *yearLabel;
 @property (weak, nonatomic) IBOutlet UILabel *baseMSRPLabel;
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *attributeOutlets;
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *returnedAttributeOutlets;
 
 
 @end
@@ -28,6 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _previousVINs = [NSMutableArray array];
 
     
     // Do any additional setup after loading the view, typically from a nib.
@@ -38,10 +42,6 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)viewWillLayoutSubviews {
-    self.VINSubmitButton.layer.cornerRadius = 10;
-
-}
 
 - (IBAction)submitVINButton:(id)sender {
     [self clearLabels];
@@ -74,23 +74,31 @@
                     
                     Vehicle *vehicle = [Vehicle initWithMake:[vehicleJSON valueForKeyPath:@"make.name"]];
                     vehicle.model = [vehicleJSON valueForKeyPath:@"model.name"];
+                    vehicle.baseMSRP = [vehicleJSON valueForKeyPath:@"price.baseMSRP"];
                     NSArray *yearsDict = [vehicleJSON valueForKeyPath:@"years"];
                     vehicle.year = yearsDict[0][@"year"];
-                    vehicle.baseMSRP = [vehicleJSON valueForKeyPath:@"price.baseMSRP"];
+                    vehicle.VIN = VINNumber;
+                    NSLog(@"VIN: %@", vehicle.VIN);
+                    
+                    [_previousVINs addObject:vehicle];
+                    NSLog(@"%lu", _previousVINs.count);
 
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        self.makeLabel.text = [NSString stringWithFormat:@"%@", vehicle.make];
-                        self.modelLabel.text = [NSString stringWithFormat:@"%@", vehicle.model];
-                        self.yearLabel.text = [NSString stringWithFormat:@"%@", vehicle.year];
-                        self.baseMSRPLabel.text = [NSString stringWithFormat:@"$%@", vehicle.baseMSRP];
+                        self.makeLabel.text = [NSString stringWithFormat:@"  %@", vehicle.make];
+                        self.modelLabel.text = [NSString stringWithFormat:@"  %@", vehicle.model];
+                        self.yearLabel.text = [NSString stringWithFormat:@"  %@", vehicle.year];
+                        self.baseMSRPLabel.text = [NSString stringWithFormat:@"  $%@", vehicle.baseMSRP];
                         
-                        if ([self.makeLabel.text isEqualToString:@"Ford"]) {
+                        if ([vehicle.make isEqualToString:@"Ford"]) {
                             [Alert initWithAlert:@"Think Ford First!" actionTitle:@"Ok" viewController:self];
                         } else {
                             [Alert initWithAlert:@"Not a Ford" actionTitle:@"Ok" viewController:self];
                         }
                         
                     });
+                    
+                    
+                    
                 } else {
                     [Alert initWithAlert:@"Could not return vehicle info. Please try again." actionTitle:@"Ok" viewController:self];
                 }
@@ -116,6 +124,43 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:true];
     [super touchesBegan:touches withEvent:event];
+}
+
+
+-(void)viewWillLayoutSubviews {
+    self.VINSubmitButton.layer.cornerRadius = 10;
+
+    for (UILabel *label in self.attributeOutlets) {
+        label.layer.borderWidth = 2.0;
+        label.layer.borderColor = [UIColor blackColor].CGColor;
+    }
+    
+    for (UILabel *label in self.returnedAttributeOutlets) {
+        label.layer.borderWidth = 2.0;
+        label.layer.borderColor = [UIColor blackColor].CGColor;
+    }
+ 
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
+    PreviousVINTVC *destinationViewController = (PreviousVINTVC*)segue.destinationViewController;
+    
+    if ([segue.identifier isEqualToString:@"showPreviousVINs"]) {
+        
+        destinationViewController.previousVINsArray = _previousVINs;
+        
+        [destinationViewController setDelegate:self];
+        
+    }
+    
+}
+
+-(void)sendVINToVC:(NSString *)VIN {
+    
+    NSLog(@"VIN Passed to First VC: %@", VIN);
+    [self.VINTextField setText:VIN];
+    
 }
 
 @end

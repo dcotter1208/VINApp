@@ -7,14 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PreviousVINTVC.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <VINDelegate>
 
-//@property(nonatomic, strong) UIAlertController *alertMessage;
-//@property (nonatomic, strong) UIAlertController *alert;
-//
-//-(id)initWithAlertMessage:(NSString *)alertMessageAndActionTitle;
-//+(id)initWithAlertMessage:(NSString *)alertMessageAndActionTitle;
+@property (nonatomic, strong) NSMutableArray *previousVINs;
 
 
 @end

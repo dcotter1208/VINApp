@@ -18,12 +18,18 @@
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil
                                                                        message:alertMessage
                                                                 preferredStyle:UIAlertControllerStyleAlert];
+        alertController.view.backgroundColor = [UIColor whiteColor];
+        alertController.view.layer.cornerRadius = 10.0;
         
         UIAlertAction* action = [UIAlertAction actionWithTitle:actionTitle style:UIAlertActionStyleCancel handler:nil];
         
         [alertController addAction:action];
-        [viewController presentViewController:alertController animated:false completion:nil];
         
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [viewController presentViewController:alertController animated:false completion:nil];
+
+        });
     }
     return self;
 }
