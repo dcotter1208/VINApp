@@ -257,6 +257,9 @@
                             <constraint firstAttribute="trailing" secondItem="xgm-sb-n8D" secondAttribute="trailing" id="WjG-44-dhG"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="pfR-4d-5d3" id="6VG-5N-bRl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e0L-tL-lx5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
