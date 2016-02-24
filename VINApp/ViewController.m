@@ -30,13 +30,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-        
-    // Do any additional setup after loading the view, typically from a nib.
+
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
 }
 
 
@@ -75,7 +74,7 @@
                         vehicle.baseMSRP = [[vehicleJSON valueForKeyPath:@"price.baseMSRP"]stringValue];
                         NSArray *yearsDict = [vehicleJSON valueForKeyPath:@"years"];
                         vehicle.year = [yearsDict[0][@"year"]stringValue];
-                        vehicle.VIN = VINNumber;
+                        vehicle.VIN = [VINNumber uppercaseString];
                         
                         dispatch_async(dispatch_get_main_queue(), ^{
                             
@@ -101,14 +100,10 @@
                 } else if (urlResponse.statusCode == 400) {
                     [Alert initWithAlert:@"Invalid VIN. Please try again." actionTitle:@"Ok" viewController:self];
                 };
-                
             }
-            
         }];
         [dataTask resume];
-        
     }
-    
 }
 
 -(void)clearLabels {

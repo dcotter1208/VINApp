@@ -17,7 +17,6 @@
 
 @interface PreviousVINTVC : UIViewController {
     RLMResults *VINArray;
-    Vehicle *selectedVin;
 }
 
 @property(nonatomic, weak) id<VINDelegate>delegate;
