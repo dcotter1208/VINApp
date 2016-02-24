@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		45974520B16E41116A78AB68 /* libPods-VINAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 227717B48BFB0BEC3043986B /* libPods-VINAppTests.a */; };
+		B093EF3C9DB89A40E28F62E6 /* libPods-VINApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F540624DD7AD9234C366AFC9 /* libPods-VINApp.a */; };
 		C036E0F41C7A537F00BC37F4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C036E0F31C7A537F00BC37F4 /* main.m */; };
 		C036E0F71C7A537F00BC37F4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C036E0F61C7A537F00BC37F4 /* AppDelegate.m */; };
 		C036E0FA1C7A537F00BC37F4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C036E0F91C7A537F00BC37F4 /* ViewController.m */; };
@@ -38,6 +40,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		05B7A8536C28381BFD58C1F0 /* Pods-VINAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VINAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VINAppTests/Pods-VINAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		227717B48BFB0BEC3043986B /* libPods-VINAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VINAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D3897B18F9EF1B7D1F7ABD0 /* Pods-VINApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VINApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VINApp/Pods-VINApp.debug.xcconfig"; sourceTree = "<group>"; };
+		4B15B15D45D5A2A91E87F640 /* Pods-VINAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VINAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VINAppTests/Pods-VINAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C036E0EF1C7A537F00BC37F4 /* VINApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VINApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C036E0F31C7A537F00BC37F4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C036E0F51C7A537F00BC37F4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -60,6 +66,8 @@
 		C036E12A1C7B684300BC37F4 /* Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alert.m; sourceTree = "<group>"; };
 		C036E12C1C7B98B900BC37F4 /* PreviousVINTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreviousVINTVC.h; sourceTree = "<group>"; };
 		C036E12D1C7B98B900BC37F4 /* PreviousVINTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreviousVINTVC.m; sourceTree = "<group>"; };
+		DCDC391C9EEFFC7805095873 /* Pods-VINApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VINApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-VINApp/Pods-VINApp.release.xcconfig"; sourceTree = "<group>"; };
+		F540624DD7AD9234C366AFC9 /* libPods-VINApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VINApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B093EF3C9DB89A40E28F62E6 /* libPods-VINApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45974520B16E41116A78AB68 /* libPods-VINAppTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +97,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		25BF3281BD1E37E19621E76A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3D3897B18F9EF1B7D1F7ABD0 /* Pods-VINApp.debug.xcconfig */,
+				DCDC391C9EEFFC7805095873 /* Pods-VINApp.release.xcconfig */,
+				4B15B15D45D5A2A91E87F640 /* Pods-VINAppTests.debug.xcconfig */,
+				05B7A8536C28381BFD58C1F0 /* Pods-VINAppTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		6C90E74B44DE0C9B42313AFC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F540624DD7AD9234C366AFC9 /* libPods-VINApp.a */,
+				227717B48BFB0BEC3043986B /* libPods-VINAppTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C036E0E61C7A537E00BC37F4 = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +124,8 @@
 				C036E10B1C7A537F00BC37F4 /* VINAppTests */,
 				C036E1161C7A537F00BC37F4 /* VINAppUITests */,
 				C036E0F01C7A537F00BC37F4 /* Products */,
+				25BF3281BD1E37E19621E76A /* Pods */,
+				6C90E74B44DE0C9B42313AFC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -170,9 +202,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C036E11C1C7A537F00BC37F4 /* Build configuration list for PBXNativeTarget "VINApp" */;
 			buildPhases = (
+				4B31F88656E4FCBF05B7694B /* Check Pods Manifest.lock */,
 				C036E0EB1C7A537F00BC37F4 /* Sources */,
 				C036E0EC1C7A537F00BC37F4 /* Frameworks */,
 				C036E0ED1C7A537F00BC37F4 /* Resources */,
+				ECADD6A445FDC5BC843BE785 /* Embed Pods Frameworks */,
+				5DFB1564681341DDD12FD4E5 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -187,9 +222,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C036E11F1C7A537F00BC37F4 /* Build configuration list for PBXNativeTarget "VINAppTests" */;
 			buildPhases = (
+				F98FF1EEC5E6511AB7DFF32B /* Check Pods Manifest.lock */,
 				C036E1041C7A537F00BC37F4 /* Sources */,
 				C036E1051C7A537F00BC37F4 /* Frameworks */,
 				C036E1061C7A537F00BC37F4 /* Resources */,
+				9C79AD2964B2AB5071D518F4 /* Embed Pods Frameworks */,
+				F2950274FCA46CD60225FB97 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -287,6 +325,99 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4B31F88656E4FCBF05B7694B /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5DFB1564681341DDD12FD4E5 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VINApp/Pods-VINApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9C79AD2964B2AB5071D518F4 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VINAppTests/Pods-VINAppTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ECADD6A445FDC5BC843BE785 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VINApp/Pods-VINApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F2950274FCA46CD60225FB97 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VINAppTests/Pods-VINAppTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F98FF1EEC5E6511AB7DFF32B /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C036E0EB1C7A537F00BC37F4 /* Sources */ = {
@@ -437,6 +568,7 @@
 		};
 		C036E11D1C7A537F00BC37F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D3897B18F9EF1B7D1F7ABD0 /* Pods-VINApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = VINApp/Info.plist;
@@ -448,6 +580,7 @@
 		};
 		C036E11E1C7A537F00BC37F4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DCDC391C9EEFFC7805095873 /* Pods-VINApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = VINApp/Info.plist;
@@ -459,6 +592,7 @@
 		};
 		C036E1201C7A537F00BC37F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4B15B15D45D5A2A91E87F640 /* Pods-VINAppTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = VINAppTests/Info.plist;
@@ -471,6 +605,7 @@
 		};
 		C036E1211C7A537F00BC37F4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 05B7A8536C28381BFD58C1F0 /* Pods-VINAppTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = VINAppTests/Info.plist;

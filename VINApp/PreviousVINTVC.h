@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Vehicle.h"
 
 @protocol VINDelegate <NSObject>
 
@@ -14,11 +15,11 @@
 
 @end
 
-@interface PreviousVINTVC : UIViewController
+@interface PreviousVINTVC : UIViewController {
+    RLMResults *VINArray;
+    Vehicle *selectedVin;
+}
 
 @property(nonatomic, weak) id<VINDelegate>delegate;
-
-@property(nonatomic, strong) NSMutableArray *previousVINsArray;
-@property(nonatomic, strong) NSString *VIN;
 
 @end
