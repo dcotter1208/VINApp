@@ -11,8 +11,6 @@
 
 @interface ViewController : UIViewController <VINDelegate>
 
-@property (nonatomic, strong) NSMutableArray *previousVINs;
-
 
 @end
 

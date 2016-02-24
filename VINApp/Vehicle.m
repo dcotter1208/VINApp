@@ -23,4 +23,8 @@
     return [[self alloc]initWithMake:make];
 }
 
++ (NSString *)primaryKey {
+    return @"VIN";
+}
+
 @end

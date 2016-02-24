@@ -30,10 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    _previousVINs = [NSMutableArray array];
-
-    
+        
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -48,69 +45,70 @@
     
     if ([self.VINTextField.text isEqual: @""]) {
         [Alert initWithAlert:@"Please input a VIN" actionTitle:@"Ok" viewController:self];
+        [self.VINTextField endEditing:TRUE];
     } else {
-    
-    NSString *edmundsAPIKey = @"5xgdf7jpeu9wkgnq6f5rave4";
-    NSString *VINNumber = [self.VINTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-    NSString *urlString = [NSString stringWithFormat:@"https://api.edmunds.com/api/vehicle/v2/vins/%@?fmt=json&api_key=%@", VINNumber, edmundsAPIKey];
-
-    NSURL *url = [NSURL URLWithString:urlString];
-    
-    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
-    
-    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
-        if (!error) {
-            NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse*) response;
+        NSString *edmundsAPIKey = @"5xgdf7jpeu9wkgnq6f5rave4";
+        NSString *VINNumber = [self.VINTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+        NSString *urlString = [NSString stringWithFormat:@"https://api.edmunds.com/api/vehicle/v2/vins/%@?fmt=json&api_key=%@", VINNumber, edmundsAPIKey];
+        
+        NSURL *url = [NSURL URLWithString:urlString];
+        
+        NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+        NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
+        
+        NSURLSessionDataTask *dataTask = [session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
             
-            if (urlResponse.statusCode == 200) {
+            if (!error) {
+                NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse*) response;
                 
-                NSError *jsonError;
-                
-                NSDictionary *vehicleJSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
-                
-                if (!jsonError) {
+                if (urlResponse.statusCode == 200) {
                     
-                    Vehicle *vehicle = [Vehicle initWithMake:[vehicleJSON valueForKeyPath:@"make.name"]];
-                    vehicle.model = [vehicleJSON valueForKeyPath:@"model.name"];
-                    vehicle.baseMSRP = [vehicleJSON valueForKeyPath:@"price.baseMSRP"];
-                    NSArray *yearsDict = [vehicleJSON valueForKeyPath:@"years"];
-                    vehicle.year = yearsDict[0][@"year"];
-                    vehicle.VIN = VINNumber;
-                    NSLog(@"VIN: %@", vehicle.VIN);
+                    NSError *jsonError;
                     
-                    [_previousVINs addObject:vehicle];
-                    NSLog(@"%lu", _previousVINs.count);
-
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        self.makeLabel.text = [NSString stringWithFormat:@"  %@", vehicle.make];
-                        self.modelLabel.text = [NSString stringWithFormat:@"  %@", vehicle.model];
-                        self.yearLabel.text = [NSString stringWithFormat:@"  %@", vehicle.year];
-                        self.baseMSRPLabel.text = [NSString stringWithFormat:@"  $%@", vehicle.baseMSRP];
+                    NSDictionary *vehicleJSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
+                    
+                    if (!jsonError) {
                         
-                        if ([vehicle.make isEqualToString:@"Ford"]) {
-                            [Alert initWithAlert:@"Think Ford First!" actionTitle:@"Ok" viewController:self];
-                        } else {
-                            [Alert initWithAlert:@"Not a Ford" actionTitle:@"Ok" viewController:self];
-                        }
+                        Vehicle *vehicle = [Vehicle initWithMake:[vehicleJSON valueForKeyPath:@"make.name"]];
+                        vehicle.model = [vehicleJSON valueForKeyPath:@"model.name"];
+                        vehicle.baseMSRP = [[vehicleJSON valueForKeyPath:@"price.baseMSRP"]stringValue];
+                        NSArray *yearsDict = [vehicleJSON valueForKeyPath:@"years"];
+                        vehicle.year = [yearsDict[0][@"year"]stringValue];
+                        vehicle.VIN = VINNumber;
                         
-                    });
-                    
-                    
-                    
-                } else {
-                    [Alert initWithAlert:@"Could not return vehicle info. Please try again." actionTitle:@"Ok" viewController:self];
-                }
-            } else if (urlResponse.statusCode == 400) {
-                [Alert initWithAlert:@"Invalid VIN. Please try again." actionTitle:@"Ok" viewController:self];
-            };
-        }
-    }];
-    
-    [dataTask resume];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            self.makeLabel.text = [NSString stringWithFormat:@"  %@", vehicle.make];
+                            self.modelLabel.text = [NSString stringWithFormat:@"  %@", vehicle.model];
+                            self.yearLabel.text = [NSString stringWithFormat:@"  %@", vehicle.year];
+                            self.baseMSRPLabel.text = [NSString stringWithFormat:@"  $%@", vehicle.baseMSRP];
+                            
+                            if ([vehicle.make isEqualToString:@"Ford"]) {
+                                [Alert initWithAlert:@"Think Ford First!" actionTitle:@"Ok" viewController:self];
+                                [self.VINTextField endEditing:TRUE];
+                            } else {
+                                [Alert initWithAlert:@"Not a Ford" actionTitle:@"Ok" viewController:self];
+                                [self.VINTextField endEditing:TRUE];
+                            }
+                            [self writeToRealm:vehicle];
+                        });
+                        
+                    } else {
+                        [Alert initWithAlert:@"Could not return vehicle info. Please try again." actionTitle:@"Ok" viewController:self];
+                        [self.VINTextField endEditing:TRUE];
+                    }
+                } else if (urlResponse.statusCode == 400) {
+                    [Alert initWithAlert:@"Invalid VIN. Please try again." actionTitle:@"Ok" viewController:self];
+                };
+                
+            }
+            
+        }];
+        [dataTask resume];
         
     }
+    
 }
 
 -(void)clearLabels {
@@ -129,7 +127,7 @@
 
 -(void)viewWillLayoutSubviews {
     self.VINSubmitButton.layer.cornerRadius = 10;
-
+    
     for (UILabel *label in self.attributeOutlets) {
         label.layer.borderWidth = 2.0;
         label.layer.borderColor = [UIColor blackColor].CGColor;
@@ -139,16 +137,14 @@
         label.layer.borderWidth = 2.0;
         label.layer.borderColor = [UIColor blackColor].CGColor;
     }
- 
+    
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-
+    
     PreviousVINTVC *destinationViewController = (PreviousVINTVC*)segue.destinationViewController;
     
     if ([segue.identifier isEqualToString:@"showPreviousVINs"]) {
-        
-        destinationViewController.previousVINsArray = _previousVINs;
         
         [destinationViewController setDelegate:self];
         
@@ -158,8 +154,16 @@
 
 -(void)sendVINToVC:(NSString *)VIN {
     
-    NSLog(@"VIN Passed to First VC: %@", VIN);
     [self.VINTextField setText:VIN];
+    
+}
+
+-(void)writeToRealm:(Vehicle*)vehicle{
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    NSLog(@"%@", realm.path);
+    [realm beginWriteTransaction];
+    [realm addOrUpdateObject:vehicle];
+    [realm commitWriteTransaction];
     
 }
 

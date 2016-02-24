@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Realm/Realm.h"
 
-@interface Vehicle : NSObject
+@interface Vehicle : RLMObject
 
 @property(nonatomic, strong) NSString *make;
 @property(nonatomic, strong) NSString *model;
@@ -18,7 +19,5 @@
 
 -(id)initWithMake:(NSString *)make;
 +(id)initWithMake:(NSString *)make;
-
-
 
 @end
